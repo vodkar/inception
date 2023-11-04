@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "{{cookiecutter.project_name}}"
+name = "{{cookiecutter.project_slug}}"
 version = "0.1.0"
 description = ""
 authors = ["vodkar <boombarah@gmail.com>"]
 readme = "README.md"
-packages = [{include = "{{cookiecutter.project_name}}"}]
+packages = [{include = "{{cookiecutter.project_slug}}"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^2.0.4"

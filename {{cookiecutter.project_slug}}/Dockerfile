@@ -1,5 +1,7 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.11-slim
+FROM python:3.11-alpine
+
+RUN apk add --no-cache libressl-dev musl-dev libffi-dev
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -11,7 +13,8 @@ ENV PYTHONUNBUFFERED=1
 ENV POETRY_VERSION==1.6.1
 RUN pip install "poetry==$POETRY_VERSION"
 COPY pyproject.toml poetry.lock ./
-RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+RUN poetry config virtualenvs.create false 
+RUN --mount=type=cache,target=~/.cache/pypoetry poetry install  --only main --no-interaction --no-ansi
 
 WORKDIR /app
 COPY . /app
@@ -22,4 +25,4 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["python", "{{cookiecutter.repo_name}}/main.py"]
+CMD ["python", "{{cookiecutter.project_slug_snake_case}}/main.py"]

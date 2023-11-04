@@ -19,7 +19,7 @@
 				"docker-build"
 			],
 			"python": {
-				"file": "{{cookiecutter.repo_name}}/main.py"
+				"file": "{{cookiecutter.project_slug_snake_case}}/main.py"
 			}
 		}
 	]
