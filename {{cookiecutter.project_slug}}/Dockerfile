@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Install poetry requirements
-ENV POETRY_VERSION==1.6.1
+ENV POETRY_VERSION==1.8.5
 RUN pip install "poetry==$POETRY_VERSION"
 COPY pyproject.toml poetry.lock ./
 RUN poetry config virtualenvs.create false 
